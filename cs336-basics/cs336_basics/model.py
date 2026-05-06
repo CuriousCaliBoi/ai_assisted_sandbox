@@ -143,15 +143,18 @@ class RotaryEmbedding(nn.Module):
             seq_len = x.size(-2)
             cos, sin = self._freq_cis_cache[:, :seq_len, :].unbind(0)
 
-        # 2D rotation matrix applied to pairs in x
+        # 2D rotation matrix applied to adjacent pairs in x.
         x1_rot = cos * x1 - sin * x2
         x2_rot = sin * x1 + cos * x2
-        # result = einx.id("... x_half, ... x_half -> ... (x_half (1 + 1))", x1_rot, x2_rot).contiguous()
-        result = torch.concat((x1_rot, x2_rot), dim=-1)
+        # Note: the CS336 Assignment 2 staff implementation concatenates
+        # (x1_rot, x2_rot), which returns split-half layout. This version
+        # restores the original interleaved layout, so position 0 is identity.
+        result = rearrange(torch.stack((x1_rot, x2_rot), dim=-1), "... half_d xy -> ... (half_d xy)")
         return result
 
     def extra_repr(self):
-        return f"context_length={self._freq_cis_cache.shape[0]}, dim/2={self._freq_cis_cache.shape[1]}"
+        _, context_length, half_dim = self._freq_cis_cache.shape
+        return f"context_length={context_length}, dim={half_dim * 2}"
 
 
 class BasicsTransformerLM(nn.Module):
