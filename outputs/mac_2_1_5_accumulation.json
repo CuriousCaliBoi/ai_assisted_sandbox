@@ -1,0 +1,21 @@
+{
+  "assignment_section": "2.1.5 mixed_precision_accumulation",
+  "results": {
+    "fp32_accumulator_fp32_addend": {
+      "value": 10.000133514404297,
+      "dtype": "torch.float32"
+    },
+    "fp16_accumulator_fp16_addend": {
+      "value": 9.953125,
+      "dtype": "torch.float16"
+    },
+    "fp32_accumulator_fp16_addend": {
+      "value": 10.00213623046875,
+      "dtype": "torch.float32"
+    },
+    "fp32_accumulator_fp16_addend_cast_to_fp32": {
+      "value": 10.00213623046875,
+      "dtype": "torch.float32"
+    }
+  }
+}

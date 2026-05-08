@@ -1,0 +1,10 @@
+{
+  "assignment_section": "2.1.5 benchmarking_mixed_precision",
+  "requested_autocast_dtype": "torch.bfloat16",
+  "parameter_dtype_inside_context": "torch.float32",
+  "fc1_output": "torch.bfloat16",
+  "layernorm_output": "torch.float32",
+  "logits": "torch.bfloat16",
+  "loss_dtype": "torch.float32",
+  "gradient_dtype": "torch.float32"
+}

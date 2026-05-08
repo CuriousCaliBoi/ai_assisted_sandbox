@@ -1,0 +1,10 @@
+{
+  "assignment_section": "2.1.6(d) residual_stream_activation_size",
+  "model_size": "xl",
+  "batch_size": 4,
+  "context_length": 2048,
+  "d_model": 2560,
+  "dtype": "torch.float32",
+  "mib": 80.0,
+  "formula": "batch_size * context_length * d_model * element_size / 1024**2"
+}

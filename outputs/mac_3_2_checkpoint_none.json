@@ -1,0 +1,84 @@
+{
+  "assignment_sections": [
+    "2.1.3 benchmarking_script",
+    "2.1.6 memory_profiling",
+    "3.1 autograd residuals"
+  ],
+  "device": "mps",
+  "dtype": "float32",
+  "mode": "train",
+  "model_size": "tiny",
+  "config": {
+    "d_model": 128,
+    "d_ff": 512,
+    "num_layers": 2,
+    "num_heads": 4,
+    "vocab_size": 10000,
+    "context_length": 256
+  },
+  "batch_size": 1,
+  "warmup_steps": 2,
+  "measurement_steps": 5,
+  "compiled_model": false,
+  "checkpoint_every": 0,
+  "timings": {
+    "forward_s": {
+      "mean_s": 0.0028760334476828574,
+      "stdev_s": 0.0001610965934264041
+    },
+    "backward_s": {
+      "mean_s": 0.003974608005955815,
+      "stdev_s": 0.0001268860058495808
+    },
+    "optimizer_s": {
+      "mean_s": 0.0025938500184565783,
+      "stdev_s": 0.0001414066257762418
+    },
+    "total_s": {
+      "mean_s": 0.009444491472095251,
+      "stdev_s": 0.0002553595972135383
+    }
+  },
+  "saved_tensors": {
+    "count": 520,
+    "total_mib": 215.38087844848633,
+    "average_per_step_mib": 43.076175689697266
+  },
+  "memory": {
+    "samples": [
+      {
+        "timestamp_s": 7.187505252659321e-05,
+        "rss_mib": 349.453125,
+        "accelerator_allocated_mib": 64.7353515625,
+        "accelerator_driver_mib": 164.78125
+      },
+      {
+        "timestamp_s": 0.013116457965224981,
+        "rss_mib": 349.859375,
+        "accelerator_allocated_mib": 85.31494140625,
+        "accelerator_driver_mib": 164.78125
+      },
+      {
+        "timestamp_s": 0.02356558304745704,
+        "rss_mib": 349.890625,
+        "accelerator_allocated_mib": 77.432373046875,
+        "accelerator_driver_mib": 164.78125
+      },
+      {
+        "timestamp_s": 0.03490616602357477,
+        "rss_mib": 349.90625,
+        "accelerator_allocated_mib": 71.68115234375,
+        "accelerator_driver_mib": 164.78125
+      },
+      {
+        "timestamp_s": 0.04616454103961587,
+        "rss_mib": 350.0,
+        "accelerator_allocated_mib": 74.380615234375,
+        "accelerator_driver_mib": 164.78125
+      }
+    ],
+    "peak_rss_mib": 350.0,
+    "peak_accelerator_allocated_mib": 85.31494140625,
+    "peak_accelerator_driver_mib": 164.78125
+  }
+}

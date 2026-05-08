@@ -1,0 +1,26 @@
+{
+  "assignment_section": "8 parallelism strategies",
+  "inputs": {
+    "B": 1024,
+    "D": 4096,
+    "D_FF": 11008,
+    "N": 8,
+    "bytes_per_elem": 2
+  },
+  "ring_collectives": {
+    "all_gather_or_reduce_scatter_time": "(N - 1) / N * S / W",
+    "all_reduce_time": "2 * (N - 1) / N * S / W"
+  },
+  "data_parallel_example": {
+    "backward_flops_formula": "6 * B * D * D_FF / N_DP",
+    "all_reduce_bytes_formula": "3 * D * D_FF * bytes_per_elem",
+    "estimated_backward_compute_s": 3.4628173824e-05,
+    "estimated_gradient_all_reduce_s": 0.00946864128,
+    "communication_bottlenecked": true
+  },
+  "notes": [
+    "FSDP replaces gradient all-reduce with weight all-gathers plus gradient reduce-scatters.",
+    "TP adds activation collectives; the FFN layout in the PDF all-reduces the row-parallel output.",
+    "2D FSDP+TP compares the max of overlapped FSDP-axis and TP-axis collective costs."
+  ]
+}

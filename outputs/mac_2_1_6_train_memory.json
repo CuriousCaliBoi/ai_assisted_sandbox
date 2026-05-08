@@ -1,0 +1,78 @@
+{
+  "assignment_sections": [
+    "2.1.3 benchmarking_script",
+    "2.1.6 memory_profiling",
+    "3.1 autograd residuals"
+  ],
+  "device": "mps",
+  "dtype": "float32",
+  "mode": "train",
+  "model_size": "tiny",
+  "config": {
+    "d_model": 128,
+    "d_ff": 512,
+    "num_layers": 2,
+    "num_heads": 4,
+    "vocab_size": 10000,
+    "context_length": 256
+  },
+  "batch_size": 1,
+  "warmup_steps": 2,
+  "measurement_steps": 5,
+  "compiled_model": false,
+  "checkpoint_every": 0,
+  "timings": {
+    "forward_s": {
+      "mean_s": 0.0026198253966867925,
+      "stdev_s": 0.00021862768851334513
+    },
+    "backward_s": {
+      "mean_s": 0.0038566999835893514,
+      "stdev_s": 0.0009126094026473873
+    },
+    "optimizer_s": {
+      "mean_s": 0.0024446247844025493,
+      "stdev_s": 0.00014477015412606563
+    },
+    "total_s": {
+      "mean_s": 0.008921150164678694,
+      "stdev_s": 0.0012190567691144044
+    }
+  },
+  "saved_tensors": {
+    "count": 520,
+    "total_mib": 215.38087844848633,
+    "average_per_step_mib": 43.076175689697266
+  },
+  "memory": {
+    "samples": [
+      {
+        "timestamp_s": 7.545901462435722e-05,
+        "rss_mib": 348.8125,
+        "accelerator_allocated_mib": 64.7353515625,
+        "accelerator_driver_mib": 164.796875
+      },
+      {
+        "timestamp_s": 0.012608375051058829,
+        "rss_mib": 348.9375,
+        "accelerator_allocated_mib": 64.720947265625,
+        "accelerator_driver_mib": 164.796875
+      },
+      {
+        "timestamp_s": 0.025157041964121163,
+        "rss_mib": 349.15625,
+        "accelerator_allocated_mib": 74.380615234375,
+        "accelerator_driver_mib": 164.796875
+      },
+      {
+        "timestamp_s": 0.037693458958528936,
+        "rss_mib": 349.1875,
+        "accelerator_allocated_mib": 64.220947265625,
+        "accelerator_driver_mib": 164.796875
+      }
+    ],
+    "peak_rss_mib": 349.1875,
+    "peak_accelerator_allocated_mib": 74.380615234375,
+    "peak_accelerator_driver_mib": 164.796875
+  }
+}

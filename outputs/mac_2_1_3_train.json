@@ -1,0 +1,42 @@
+{
+  "assignment_sections": [
+    "2.1.3 benchmarking_script"
+  ],
+  "device": "mps",
+  "dtype": "float32",
+  "mode": "train",
+  "model_size": "tiny",
+  "config": {
+    "d_model": 128,
+    "d_ff": 512,
+    "num_layers": 2,
+    "num_heads": 4,
+    "vocab_size": 10000,
+    "context_length": 128
+  },
+  "batch_size": 1,
+  "warmup_steps": 5,
+  "measurement_steps": 10,
+  "compiled_model": false,
+  "checkpoint_every": 0,
+  "timings": {
+    "forward_s": {
+      "mean_s": 0.002526324929203838,
+      "stdev_s": 0.00012439207879322872
+    },
+    "backward_s": {
+      "mean_s": 0.003176662395708263,
+      "stdev_s": 0.0001770529783742629
+    },
+    "optimizer_s": {
+      "mean_s": 0.0025281208916567268,
+      "stdev_s": 0.00010822801344818348
+    },
+    "total_s": {
+      "mean_s": 0.008231108216568828,
+      "stdev_s": 0.000360988281934214
+    }
+  },
+  "saved_tensors": null,
+  "memory": null
+}

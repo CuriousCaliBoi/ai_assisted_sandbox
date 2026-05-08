@@ -1,0 +1,91 @@
+{
+  "assignment_sections": [
+    "2.1.3 benchmarking_script",
+    "2.1.6 memory_profiling",
+    "3.1 autograd residuals",
+    "3.2 gradient_checkpointing"
+  ],
+  "device": "mps",
+  "dtype": "float32",
+  "mode": "train",
+  "model_size": "tiny",
+  "config": {
+    "d_model": 128,
+    "d_ff": 512,
+    "num_layers": 2,
+    "num_heads": 4,
+    "vocab_size": 10000,
+    "context_length": 256
+  },
+  "batch_size": 1,
+  "warmup_steps": 2,
+  "measurement_steps": 5,
+  "compiled_model": false,
+  "checkpoint_every": 2,
+  "timings": {
+    "forward_s": {
+      "mean_s": 0.00338643379509449,
+      "stdev_s": 0.000244175151018065
+    },
+    "backward_s": {
+      "mean_s": 0.005838524992577731,
+      "stdev_s": 0.0004964504278958762
+    },
+    "optimizer_s": {
+      "mean_s": 0.002631533774547279,
+      "stdev_s": 6.064276853440547e-05
+    },
+    "total_s": {
+      "mean_s": 0.0118564925622195,
+      "stdev_s": 0.0005408398145447804
+    }
+  },
+  "saved_tensors": {
+    "count": 70,
+    "total_mib": 125.22462844848633,
+    "average_per_step_mib": 25.044925689697266
+  },
+  "memory": {
+    "samples": [
+      {
+        "timestamp_s": 6.274995394051075e-05,
+        "rss_mib": 349.546875,
+        "accelerator_allocated_mib": 67.98583984375,
+        "accelerator_driver_mib": 172.78125
+      },
+      {
+        "timestamp_s": 0.012840165989473462,
+        "rss_mib": 349.78125,
+        "accelerator_allocated_mib": 68.236083984375,
+        "accelerator_driver_mib": 172.78125
+      },
+      {
+        "timestamp_s": 0.025390250026248395,
+        "rss_mib": 350.078125,
+        "accelerator_allocated_mib": 54.97021484375,
+        "accelerator_driver_mib": 172.78125
+      },
+      {
+        "timestamp_s": 0.035804125014692545,
+        "rss_mib": 350.21875,
+        "accelerator_allocated_mib": 78.508544921875,
+        "accelerator_driver_mib": 172.78125
+      },
+      {
+        "timestamp_s": 0.04866345797199756,
+        "rss_mib": 350.3125,
+        "accelerator_allocated_mib": 68.236083984375,
+        "accelerator_driver_mib": 172.78125
+      },
+      {
+        "timestamp_s": 0.06019029102753848,
+        "rss_mib": 350.390625,
+        "accelerator_allocated_mib": 68.236083984375,
+        "accelerator_driver_mib": 172.78125
+      }
+    ],
+    "peak_rss_mib": 350.390625,
+    "peak_accelerator_allocated_mib": 78.508544921875,
+    "peak_accelerator_driver_mib": 172.78125
+  }
+}

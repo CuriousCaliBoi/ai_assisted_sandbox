@@ -1,0 +1,63 @@
+{
+  "assignment_sections": [
+    "4.1 pytorch_attention",
+    "4.2 torch_compile"
+  ],
+  "device": "mps",
+  "dtype": "float32",
+  "compiled": true,
+  "results": [
+    {
+      "d_model": 16,
+      "seq_len": 128,
+      "status": "ok",
+      "forward": {
+        "mean_s": 0.00039443752029910684,
+        "stdev_s": 7.533592767001662e-05
+      },
+      "backward": {
+        "mean_s": 0.0005767500260844827,
+        "stdev_s": 6.387585382403785e-05
+      }
+    },
+    {
+      "d_model": 16,
+      "seq_len": 256,
+      "status": "ok",
+      "forward": {
+        "mean_s": 0.0005000210367143154,
+        "stdev_s": 0.00012996063056397672
+      },
+      "backward": {
+        "mean_s": 0.000568062998354435,
+        "stdev_s": 2.2126766195965375e-05
+      }
+    },
+    {
+      "d_model": 32,
+      "seq_len": 128,
+      "status": "ok",
+      "forward": {
+        "mean_s": 0.00043808348709717393,
+        "stdev_s": 0.0001034151130375108
+      },
+      "backward": {
+        "mean_s": 0.000568521034438163,
+        "stdev_s": 7.100838475387168e-06
+      }
+    },
+    {
+      "d_model": 32,
+      "seq_len": 256,
+      "status": "ok",
+      "forward": {
+        "mean_s": 0.0004250625497661531,
+        "stdev_s": 5.736408341104122e-05
+      },
+      "backward": {
+        "mean_s": 0.0006016460247337818,
+        "stdev_s": 1.7380635926933918e-06
+      }
+    }
+  ]
+}

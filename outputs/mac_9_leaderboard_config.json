@@ -1,0 +1,15 @@
+{
+  "assignment_section": "9 leaderboard",
+  "requires": "two B200 GPUs, BF16, causal masking",
+  "target_config": {
+    "ctx_len": 32768,
+    "vocab_size": 151936,
+    "d_model": 4096,
+    "d_ff": 11008,
+    "num_layers": 34,
+    "num_heads": 32,
+    "batch_size": 2,
+    "dtype": "torch.bfloat16"
+  },
+  "suggested_local_use": "Use tiny/small transformer-benchmark and attention-benchmark to debug timing paths offline."
+}
