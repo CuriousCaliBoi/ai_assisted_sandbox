@@ -142,6 +142,8 @@ PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
 | 2026-06-02 | **2-GPU FSDP implemented** (`cs336_systems/fsdp.py`); 3/4 FSDP tests pass |
 | 2026-06-02 | **2× B300 FSDP + CuTe FA @ ctx=8192:** **718 ms**, 144 GiB/rank (no checkpoint) |
 | 2026-06-02 | **2× B300 FSDP @ ctx=32768:** OOM without fused CE; checkpoint+FSDP incompatible (weight gather changes shapes) |
+| 2026-06-03 | **Fused CE + ckpt @ ctx=32768:** **6,086 ms**, **106 GiB** peak (saves ~33 GiB vs full logits) |
+| 2026-06-03 | **`torch.compile` on CuTe FA stack:** ~1.56× @ ctx=8192 (797 vs 1,242 ms); **no gain** @ ctx=32768+ckpt (~6,010 ms); compile+hurt with fused CE+ckpt (~9,688 ms) |
 | 2026-06-02 | Created this progress log |
 
 ---
@@ -193,14 +195,50 @@ Profiler output includes per-phase VRAM (`before_step`, `after_forward`, `after_
 
 ---
 
+### 4. Fused LM-head + cross-entropy
+
+**What we tried:** Chunked CE in `cs336_systems/fused_ce.py` — avoids materializing `[2, 32768, 151936]` logits.
+
+**Script flags:** `--attention cute --checkpoint-every 1 --fused-ce`
+
+| Config | Time | Peak VRAM |
+|--------|------|-----------|
+| CuTe FA + ckpt (full logits) | 5,980 ms | 139 GiB |
+| CuTe FA + ckpt + **fused CE** | **6,086 ms** | **106 GiB** |
+
+Fused CE saves ~33 GiB (logits spike gone) with ~100 ms overhead from chunked LM-head matmuls.
+
+---
+
+### 5. `torch.compile` on the CuTe FA stack
+
+**Script flags:** add `--compile` (or `--compile-mode max-autotune`)
+
+| Config | No compile | With compile | Notes |
+|--------|------------|--------------|-------|
+| ctx=8192, cute FA, no ckpt | 1,242 ms | **797 ms** | **1.56×** speedup; 182 → 133 GiB |
+| ctx=32768, cute FA + ckpt=1 | 5,980 ms | 6,011 ms | No benefit — FA4 custom autograd + checkpoint limit Inductor |
+| ctx=32768, cute FA + ckpt + fused CE | 6,086 ms | 9,688 ms | Compiling `forward_hidden` **slows** (~1.6×) |
+
+**Takeaway:** `torch.compile` helps the FFN/linear regions when the full activation graph fits (ctx=8192). At ctx=32768 with checkpointing, compile is neutral or harmful. Top leaderboard entries likely avoid checkpointing (fused CE + 2-GPU) before layering compile.
+
+**Command (best compile win so far):**
+```bash
+PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
+  uv run python scripts/naive_leaderboard_benchmark.py \
+  --attention cute --ctx-len 8192 --compile --quick
+```
+
+---
+
 ## Not yet tried
 
 - [ ] Gluon FA backward (upstream Triton only ships forward example)
-- [ ] Fused LM head + cross-entropy (avoid full `[2, 32768, 151936]` logits)
-- [ ] 2-GPU FSDP / DDP across both B300s
+- [x] Fused LM-head + cross-entropy (`--fused-ce`; chunked implementation)
+- [x] 2-GPU FSDP across both B300s
+- [x] `torch.compile` on CuTe FA stack (see section 5)
 - [ ] Fused AdamW
-- [ ] Remove checkpointing once fused CE + sharding free enough memory
-- [ ] `torch.compile` on top of CuTe FA stack
+- [ ] FSDP @ ctx=32768 without checkpointing (activation memory still too high)
 - [ ] Full official `warmup=10_000, rep=30_000` timing
 
 ---

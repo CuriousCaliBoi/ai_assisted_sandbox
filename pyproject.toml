@@ -18,6 +18,9 @@ dependencies = [
     "pandas>=2",
     "ty>=0.0.29",
     "ruff>=0.15.10",
+    "huggingface-hub>=0.26",
+    "safetensors>=0.4",
+    "transformers>=4.46",
 ]
 
 [build-system]
@@ -34,7 +37,6 @@ python-preference = "managed"
 
 [tool.uv.sources]
 cs336-basics = { path = "./cs336-basics", editable = true } # Change this path to your assignment1-basics repo you want to use your own implementation!
-
 
 
 [tool.pytest.ini_options]

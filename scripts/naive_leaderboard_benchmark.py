@@ -49,6 +49,7 @@ class TrainStepContext:
     use_fsdp: bool = False
     fused_ce: bool = False
     fused_ce_chunk_size: int = 512
+    forward_hidden_fn: object | None = None
 
 
 def _unwrap_model(model: torch.nn.Module) -> torch.nn.Module:
@@ -60,7 +61,8 @@ def compute_loss(ctx: TrainStepContext) -> torch.Tensor:
         base = _unwrap_model(ctx.model)
         if not hasattr(base, "forward_hidden"):
             raise ValueError("fused CE requires a model with forward_hidden() (use --attention cute)")
-        hidden = base.forward_hidden(ctx.labels)
+        forward_hidden = ctx.forward_hidden_fn or base.forward_hidden
+        hidden = forward_hidden(ctx.labels)
         loss = fused_lm_head_cross_entropy(
             hidden,
             base.lm_head,
@@ -124,7 +126,8 @@ def profile_train_step_memory(ctx: TrainStepContext, top_k: int = 20) -> dict:
         record("after_zero_grad")
         if ctx.fused_ce:
             base = _unwrap_model(ctx.model)
-            hidden = base.forward_hidden(ctx.labels)
+            forward_hidden = ctx.forward_hidden_fn or base.forward_hidden
+            hidden = forward_hidden(ctx.labels)
             record("after_forward")
             loss = fused_lm_head_cross_entropy(
                 hidden,
@@ -272,9 +275,19 @@ def build_train_context(
     model = build_model(cfg, device, attention=attention, checkpoint_every=checkpoint_every)
     if use_fsdp:
         model = get_fsdp(model, compute_dtype=cfg.torch_dtype)
+
+    forward_hidden_fn = None
+    base = _unwrap_model(model)
     if compile_model:
-        print(f"Compiling model with torch.compile(mode={compile_mode!r})...")
-        model = torch.compile(model, mode=compile_mode)
+        if fused_ce and hasattr(base, "forward_hidden"):
+            print(f"Compiling forward_hidden with torch.compile(mode={compile_mode!r})...")
+            forward_hidden_fn = torch.compile(base.forward_hidden, mode=compile_mode)
+        else:
+            print(f"Compiling model with torch.compile(mode={compile_mode!r})...")
+            model = torch.compile(model, mode=compile_mode)
+    elif fused_ce and hasattr(base, "forward_hidden"):
+        forward_hidden_fn = base.forward_hidden
+
     optimizer = AdamW(model.parameters())
     return TrainStepContext(
         model=model,
@@ -285,6 +298,7 @@ def build_train_context(
         use_fsdp=use_fsdp,
         fused_ce=fused_ce,
         fused_ce_chunk_size=fused_ce_chunk_size,
+        forward_hidden_fn=forward_hidden_fn,
     )
 
 
