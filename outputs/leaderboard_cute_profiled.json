@@ -1,0 +1,355 @@
+{
+  "training_step_ms": 6042.89013671875,
+  "training_step_s": 6.04289013671875,
+  "warmup_ms": 1000,
+  "rep_ms": 3000,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA B300 SXM6 AC",
+  "peak_memory_allocated_gib": 139.11925601959229,
+  "peak_memory_reserved_gib": 158.580078125,
+  "compiled": false,
+  "compile_mode": null,
+  "attention": "cute",
+  "checkpoint_every": 1,
+  "memory_profile": {
+    "phases": [
+      {
+        "label": "before_step",
+        "allocated_gib": 60.565826416015625,
+        "reserved_gib": 158.580078125,
+        "active_gib": 60.565826416015625,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 60.565826416015625,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      },
+      {
+        "label": "after_zero_grad",
+        "allocated_gib": 45.43053436279297,
+        "reserved_gib": 158.580078125,
+        "active_gib": 45.43053436279297,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 60.565826416015625,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      },
+      {
+        "label": "after_forward",
+        "allocated_gib": 83.47765350341797,
+        "reserved_gib": 158.580078125,
+        "active_gib": 83.47765350341797,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 83.47765350341797,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      },
+      {
+        "label": "after_loss",
+        "allocated_gib": 120.57201433181763,
+        "reserved_gib": 158.580078125,
+        "active_gib": 120.57201433181763,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 139.11913299560547,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      },
+      {
+        "label": "after_backward",
+        "allocated_gib": 79.11270189285278,
+        "reserved_gib": 158.580078125,
+        "active_gib": 79.11270189285278,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 139.11925601959229,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      },
+      {
+        "label": "after_optimizer_step",
+        "allocated_gib": 79.11270189285278,
+        "reserved_gib": 158.580078125,
+        "active_gib": 79.11270189285278,
+        "inactive_gib": 0.0,
+        "peak_allocated_gib": 139.11925601959229,
+        "peak_reserved_gib": 158.580078125,
+        "num_alloc_retries": 0,
+        "num_ooms": 0,
+        "device_index": 0
+      }
+    ],
+    "peak_allocated_gib": 139.11925601959229,
+    "peak_reserved_gib": 158.580078125,
+    "top_by_self_device_memory": [
+      {
+        "name": "aten::mul",
+        "self_device_memory_gib": 1366.892807006836,
+        "device_memory_gib": 1366.892807006836,
+        "count": 3770
+      },
+      {
+        "name": "aten::bmm",
+        "self_device_memory_gib": 516.4599609375,
+        "device_memory_gib": 516.4599609375,
+        "count": 955
+      },
+      {
+        "name": "aten::empty_strided",
+        "self_device_memory_gib": 404.2466969490051,
+        "device_memory_gib": 404.2466969490051,
+        "count": 1441
+      },
+      {
+        "name": "aten::pow",
+        "self_device_memory_gib": 221.15213775634766,
+        "device_memory_gib": 221.15213775634766,
+        "count": 584
+      },
+      {
+        "name": "aten::empty",
+        "self_device_memory_gib": 175.31640625,
+        "device_memory_gib": 175.31640625,
+        "count": 448
+      },
+      {
+        "name": "aten::add",
+        "self_device_memory_gib": 164.43932342529297,
+        "device_memory_gib": 164.43932342529297,
+        "count": 1370
+      },
+      {
+        "name": "aten::cat",
+        "self_device_memory_gib": 102.0,
+        "device_memory_gib": 102.0,
+        "count": 204
+      },
+      {
+        "name": "aten::sigmoid",
+        "self_device_memory_gib": 91.375,
+        "device_memory_gib": 91.375,
+        "count": 68
+      },
+      {
+        "name": "aten::neg",
+        "self_device_memory_gib": 91.1875,
+        "device_memory_gib": 91.1875,
+        "count": 72
+      },
+      {
+        "name": "aten::div",
+        "self_device_memory_gib": 84.13553619384766,
+        "device_memory_gib": 84.13553619384766,
+        "count": 380
+      },
+      {
+        "name": "aten::sub",
+        "self_device_memory_gib": 71.09375,
+        "device_memory_gib": 71.09375,
+        "count": 138
+      },
+      {
+        "name": "aten::sigmoid_backward",
+        "self_device_memory_gib": 45.6875,
+        "device_memory_gib": 45.6875,
+        "count": 34
+      },
+      {
+        "name": "aten::exp",
+        "self_device_memory_gib": 18.546875,
+        "device_memory_gib": 18.546875,
+        "count": 1
+      },
+      {
+        "name": "aten::sqrt",
+        "self_device_memory_gib": 15.135292053222656,
+        "device_memory_gib": 15.135292053222656,
+        "count": 309
+      },
+      {
+        "name": "aten::index",
+        "self_device_memory_gib": 0.5,
+        "device_memory_gib": 0.5,
+        "count": 1
+      },
+      {
+        "name": "aten::mean",
+        "self_device_memory_gib": 0.0334477424621582,
+        "device_memory_gib": 0.0334477424621582,
+        "count": 138
+      },
+      {
+        "name": "aten::rsqrt",
+        "self_device_memory_gib": 0.033447265625,
+        "device_memory_gib": 0.033447265625,
+        "count": 137
+      },
+      {
+        "name": "aten::sum",
+        "self_device_memory_gib": 0.018265247344970703,
+        "device_memory_gib": 0.018265247344970703,
+        "count": 142
+      },
+      {
+        "name": "aten::max",
+        "self_device_memory_gib": 0.0006103515625,
+        "device_memory_gib": 0.0006103515625,
+        "count": 1
+      },
+      {
+        "name": "aten::remainder",
+        "self_device_memory_gib": 0.00048828125,
+        "device_memory_gib": 0.00048828125,
+        "count": 1
+      }
+    ],
+    "top_by_self_device_time_ms": [
+      {
+        "name": "aten::bmm",
+        "self_device_time_ms": 2034.1785049999999,
+        "device_time_ms": 2185.6437920000008,
+        "count": 955
+      },
+      {
+        "name": "FlashAttnFuncBackward",
+        "self_device_time_ms": 1123.3911109999967,
+        "device_time_ms": 1123.3911109999967,
+        "count": 34
+      },
+      {
+        "name": "kernel_cutlass_kernel_flash_attncuteflash_bwd_sm100FlashAttentionBackwardSm100_object_at__tensor0000o11101213_tensor0000_o_10111213_tensor0000o11101213_tensor0000_o_10111213_tensor0000o11_0",
+        "self_device_time_ms": 1101.3882999999994,
+        "device_time_ms": 1101.3882999999994,
+        "count": 34
+      },
+      {
+        "name": "aten::mul",
+        "self_device_time_ms": 1100.5613609999791,
+        "device_time_ms": 1173.2906889999842,
+        "count": 3770
+      },
+      {
+        "name": "nvjet_sm103_tst_128x256_64x6_2x1_2cta_v_bz_TNT",
+        "self_device_time_ms": 883.6982299999992,
+        "device_time_ms": 883.6982299999992,
+        "count": 443
+      },
+      {
+        "name": "FlashAttnFunc",
+        "self_device_time_ms": 693.1806509999986,
+        "device_time_ms": 693.1806509999986,
+        "count": 68
+      },
+      {
+        "name": "kernel_cutlass_kernel_flash_attncuteflash_fwd_sm100FlashAttentionForwardSm100_object_at__tensor0000o11101213_tensor0000o11101213_tensor0000o10111213_tensor0000o11101213_tensorptrf32_gmem__0",
+        "self_device_time_ms": 693.1806509999986,
+        "device_time_ms": 693.1806509999986,
+        "count": 68
+      },
+      {
+        "name": "nvjet_sm103_tst_128x256_64x6_2x1_2cta_v_bz_NNT",
+        "self_device_time_ms": 514.0111390000044,
+        "device_time_ms": 514.0111390000044,
+        "count": 238
+      },
+      {
+        "name": "nvjet_sm103_tst_256x256_64x4_2x1_2cta_v_bz_NTT",
+        "self_device_time_ms": 385.20433999999545,
+        "device_time_ms": 385.20433999999545,
+        "count": 103
+      },
+      {
+        "name": "aten::copy_",
+        "self_device_time_ms": 381.49939300000335,
+        "device_time_ms": 395.65704900000264,
+        "count": 925
+      },
+      {
+        "name": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+        "self_device_time_ms": 375.3708779999929,
+        "device_time_ms": 375.3708779999929,
+        "count": 832
+      },
+      {
+        "name": "Command Buffer Full",
+        "self_device_time_ms": 327.9230880000088,
+        "device_time_ms": 327.9230880000088,
+        "count": 5789
+      },
+      {
+        "name": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1}>(at::TensorIteratorBase&, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#12}::operator()() const::{lambda(c10::BFloat16)#1} const&)::{lambda(int)#1})",
+        "self_device_time_ms": 258.8807850000085,
+        "device_time_ms": 258.8807850000085,
+        "count": 647
+      },
+      {
+        "name": "void at::native::elementwise_kernel<128, 4, at::native::gpu_kernel_impl<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+        "self_device_time_ms": 232.00005400000512,
+        "device_time_ms": 232.00005400000512,
+        "count": 206
+      },
+      {
+        "name": "nvjet_sm103_tst_256x256_64x4_2x2_2cta_h_bz_NTT",
+        "self_device_time_ms": 196.55649100000085,
+        "device_time_ms": 196.55649100000085,
+        "count": 136
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<8, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*, 3ul> >(int, at::native::CUDAFunctor_add<c10::BFloat16>, std::array<char*, 3ul>)",
+        "self_device_time_ms": 185.59575599999988,
+        "device_time_ms": 185.59575599999988,
+        "count": 1982
+      },
+      {
+        "name": "void at::native::vectorized_elementwise_kernel<8, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul> >(int, at::native::BinaryFunctor<c10::BFloat16, c10::BFloat16, c10::BFloat16, at::native::binary_internal::MulFunctor<float> >, std::array<char*, 3ul>)",
+        "self_device_time_ms": 175.0987349999977,
+        "device_time_ms": 175.0987349999977,
+        "count": 272
+      },
+      {
+        "name": "void at::native::elementwise_kernel<128, 2, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1}>(int, at::native::gpu_kernel_impl_nocast<at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > >(at::TensorIteratorBase&, at::native::BinaryFunctor<float, float, float, at::native::binary_internal::MulFunctor<float> > const&)::{lambda(int)#1})",
+        "self_device_time_ms": 168.365627999998,
+        "device_time_ms": 168.365627999998,
+        "count": 206
+      },
+      {
+        "name": "void at::native::unrolled_elementwise_kernel<at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, 4, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1> >(int, at::native::direct_copy_kernel_cuda(at::TensorIteratorBase&)::{lambda()#3}::operator()() const::{lambda()#7}::operator()() const::{lambda(float)#1}, std::array<char*, 2ul>, TrivialOffsetCalculator<1, unsigned int>, TrivialOffsetCalculator<1, unsigned int>, at::native::memory::LoadWithCast<1>, at::native::memory::StoreWithCast<1>)",
+        "self_device_time_ms": 163.25758199999592,
+        "device_time_ms": 163.25758199999592,
+        "count": 206
+      },
+      {
+        "name": "aten::cat",
+        "self_device_time_ms": 123.06693300000013,
+        "device_time_ms": 156.2786049999999,
+        "count": 204
+      }
+    ],
+    "table_self_device_memory": "===========================================================================================================================================================================================================================================================\nThis report only display top-level ops statistics\n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg       CPU Mem  Self CPU Mem      CUDA Mem  Self CUDA Mem    # of Calls  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \n                                              aten::mul         0.18%      16.632ms        10.32%     978.516ms     259.553us        1.101s        18.18%        1.173s     311.218us           0 B           0 B    1366.89 GB    1366.89 GB          3770  \n                                              aten::pow         0.04%       3.564ms         0.96%      90.845ms     155.556us      48.546ms         0.80%      82.555ms     141.361us           0 B           0 B     221.15 GB     221.15 GB           584  \n                                            aten::empty         0.01%     816.410us         0.01%     816.410us       1.822us       0.000us         0.00%       0.000us       0.000us           0 B           0 B     175.32 GB     175.32 GB           448  \n                                              aten::add         0.05%       4.668ms         1.81%     172.096ms     125.618us      78.975ms         1.30%      95.581ms      69.767us           0 B           0 B     164.44 GB     164.44 GB          1370  \n                                          aten::sigmoid         0.01%     574.155us         0.01%       1.331ms      19.577us      48.706ms         0.80%      48.706ms     716.272us           0 B           0 B      91.38 GB      91.38 GB            68  \n                                              aten::neg         0.00%     355.630us         0.26%      24.780ms     344.172us      47.307ms         0.78%      47.307ms     657.041us           0 B           0 B      91.19 GB      91.19 GB            72  \n                                              aten::sub         0.01%     707.945us         0.15%      14.075ms     101.991us      66.674ms         1.10%      67.881ms     491.894us           0 B           0 B      71.09 GB      71.09 GB           138  \n                                              aten::exp         0.00%      21.830us         0.00%      60.399us      60.399us       7.208ms         0.12%       7.208ms       7.208ms           0 B           0 B      18.55 GB      18.55 GB             1  \n                                            aten::index         0.00%      64.259us         0.00%     104.138us     104.138us     205.442us         0.00%     205.442us     205.442us           0 B           0 B     512.00 MB     512.00 MB             1  \n                                             aten::mean         0.01%       1.176ms         0.19%      18.352ms     132.985us      25.479ms         0.42%      29.545ms     214.096us           0 B           0 B      34.25 MB      34.25 MB           138  \n                                            aten::rsqrt         0.01%       1.121ms         0.12%      11.740ms      85.696us     258.759us         0.00%     299.080us       2.183us           0 B           0 B      34.25 MB      34.25 MB           137  \n                                              aten::sum         0.01%       1.072ms         2.54%     241.101ms       1.698ms      35.055ms         0.58%      35.055ms     246.866us           0 B           0 B      18.70 MB      18.70 MB           142  \n                                              aten::max         0.00%      73.448us         0.00%     132.097us     132.097us      11.175ms         0.18%      11.175ms      11.175ms           0 B           0 B     640.00 KB     640.00 KB             1  \n                                              aten::log         0.00%       9.290us         0.00%      14.900us      14.900us       2.400us         0.00%       2.400us       2.400us           0 B           0 B     128.00 KB     128.00 KB             1  \n                                           aten::gather         0.00%      29.129us         0.00%      68.988us      68.988us     189.026us         0.00%     189.026us     189.026us           0 B           0 B     128.00 KB     128.00 KB             1  \n                                  cudaDeviceSynchronize        21.00%        1.992s        21.00%        1.992s     284.605ms     205.442us         0.00%     205.442us      29.349us           0 B           0 B           0 B           0 B             7  \n                                Activity Buffer Request         0.02%       2.075ms         0.02%       2.075ms       1.037ms       0.000us         0.00%       0.000us       0.000us           0 B           0 B           0 B           0 B             2  \nvoid at::native::vectorized_gather_kernel<16, long>(...         0.00%       0.000us         0.00%       0.000us       0.000us     205.442us         0.00%     205.442us     205.442us           0 B           0 B           0 B           0 B             1  \n                                  cudaStreamIsCapturing         0.00%      84.668us         0.00%      84.668us       0.415us       2.932ms         0.05%       2.932ms      14.372us           0 B           0 B           0 B           0 B           204  \n                                        _NoopSaveInputs         0.00%     458.661us         0.01%     481.580us      14.164us       0.000us         0.00%       0.000us       0.000us           0 B           0 B           0 B           0 B            34  \n-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  \nSelf CPU time total: 9.486s\nSelf CUDA time total: 6.055s\n",
+    "memory_summary": "|===========================================================================|\n|                  PyTorch CUDA memory summary, device ID 0                 |\n|---------------------------------------------------------------------------|\n|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |\n|===========================================================================|\n|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |\n|---------------------------------------------------------------------------|\n| Allocated memory      |  81011 MiB | 142458 MiB |  33797 GiB |  33718 GiB |\n|       from large pool |  81008 MiB | 142454 MiB |  33795 GiB |  33716 GiB |\n|       from small pool |      3 MiB |      5 MiB |      1 GiB |      1 GiB |\n|---------------------------------------------------------------------------|\n| Active memory         |  81011 MiB | 142458 MiB |  33797 GiB |  33718 GiB |\n|       from large pool |  81008 MiB | 142454 MiB |  33795 GiB |  33716 GiB |\n|       from small pool |      3 MiB |      5 MiB |      1 GiB |      1 GiB |\n|---------------------------------------------------------------------------|\n| Requested memory      |  81011 MiB | 142458 MiB |  33797 GiB |  33718 GiB |\n|       from large pool |  81008 MiB | 142454 MiB |  33795 GiB |  33716 GiB |\n|       from small pool |      3 MiB |      5 MiB |      1 GiB |      1 GiB |\n|---------------------------------------------------------------------------|\n| GPU reserved memory   | 162386 MiB | 162386 MiB | 162386 MiB |      0 B   |\n|       from large pool | 162380 MiB | 162380 MiB | 162380 MiB |      0 B   |\n|       from small pool |      6 MiB |      6 MiB |      6 MiB |      0 B   |\n|---------------------------------------------------------------------------|\n| Non-releasable memory |      0 B   |      0 B   |      0 B   |      0 B   |\n|       from large pool |      0 B   |      0 B   |      0 B   |      0 B   |\n|       from small pool |      0 B   |      0 B   |      0 B   |      0 B   |\n|---------------------------------------------------------------------------|\n| Allocations           |    1243    |    1257    |  102695    |  101452    |\n|       from large pool |     964    |     977    |   83814    |   82850    |\n|       from small pool |     279    |     285    |   18881    |   18602    |\n|---------------------------------------------------------------------------|\n| Active allocs         |    1243    |    1257    |  102695    |  101452    |\n|       from large pool |     964    |     977    |   83814    |   82850    |\n|       from small pool |     279    |     285    |   18881    |   18602    |\n|---------------------------------------------------------------------------|\n| GPU reserved segments |       0    |       0    |       0    |       0    |\n|       from large pool |       0    |       0    |       0    |       0    |\n|       from small pool |       0    |       0    |       0    |       0    |\n|---------------------------------------------------------------------------|\n| Non-releasable allocs |       0    |       0    |       0    |       0    |\n|       from large pool |       0    |       0    |       0    |       0    |\n|       from small pool |       0    |       0    |       0    |       0    |\n|---------------------------------------------------------------------------|\n| Oversize allocations  |       0    |       0    |       0    |       0    |\n|---------------------------------------------------------------------------|\n| Oversize GPU segments |       0    |       0    |       0    |       0    |\n|===========================================================================|\n"
+  },
+  "memory_snapshot_path": "outputs/cute_fa_memory_snapshot.pickle",
+  "config": {
+    "ctx_len": 32768,
+    "vocab_size": 151936,
+    "d_model": 4096,
+    "d_ff": 11008,
+    "num_layers": 34,
+    "num_heads": 32,
+    "batch_size": 2,
+    "dtype": "torch.bfloat16",
+    "is_causal": true
+  },
+  "leaderboard_reference_ms": {
+    "naive_baseline": 10000,
+    "top_keshav": 3837,
+    "median_daphne": 6606
+  }
+}

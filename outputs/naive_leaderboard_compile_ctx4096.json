@@ -1,0 +1,28 @@
+{
+  "training_step_ms": 672.4987182617188,
+  "training_step_s": 0.6724987182617187,
+  "warmup_ms": 1000,
+  "rep_ms": 3000,
+  "device": "cuda:0",
+  "gpu_name": "NVIDIA B300 SXM6 AC",
+  "peak_memory_allocated_gib": 225.2898187637329,
+  "peak_memory_reserved_gib": 231.4296875,
+  "compiled": true,
+  "compile_mode": "default",
+  "config": {
+    "ctx_len": 4096,
+    "vocab_size": 151936,
+    "d_model": 4096,
+    "d_ff": 11008,
+    "num_layers": 34,
+    "num_heads": 32,
+    "batch_size": 2,
+    "dtype": "torch.bfloat16",
+    "is_causal": true
+  },
+  "leaderboard_reference_ms": {
+    "naive_baseline": 10000,
+    "top_keshav": 3837,
+    "median_daphne": 6606
+  }
+}

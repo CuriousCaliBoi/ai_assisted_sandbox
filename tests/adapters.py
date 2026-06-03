@@ -2,6 +2,9 @@ from __future__ import annotations
 
 import torch
 
+from cs336_systems.flash_attention import FlashAttention2PyTorchAutograd, FlashAttentionCuteAutograd
+from cs336_systems.fsdp import FSDP, fsdp_gather_full_params
+from cs336_systems.fsdp import fsdp_on_after_backward as _fsdp_on_after_backward_impl
 
 
 def get_flashattention_autograd_function_pytorch() -> type:
@@ -13,8 +16,7 @@ def get_flashattention_autograd_function_pytorch() -> type:
     Returns:
         A class object (not an instance of the class)
     """
-    # For example: return MyFlashAttnAutogradFunctionClass
-    raise NotImplementedError
+    return FlashAttention2PyTorchAutograd
 
 
 def get_flashattention_autograd_function_triton() -> type:
@@ -29,8 +31,8 @@ def get_flashattention_autograd_function_triton() -> type:
     Returns:
         A class object (not an instance of the class)
     """
-    # For example: return MyTritonFlashAttentionAutogradFunctionClass
-    raise NotImplementedError
+    # FA4 CuTeDSL kernels (forward + backward) on Blackwell/Hopper.
+    return FlashAttentionCuteAutograd
 
 
 def get_ddp(module: torch.nn.Module) -> torch.nn.Module:
@@ -85,7 +87,7 @@ def get_fsdp(module: torch.nn.Module, compute_dtype: torch.dtype | None = None) 
         Instance of an FSDP class.
     """
     # For example: return FSDP(module, compute_dtype=compute_dtype)
-    raise NotImplementedError
+    return FSDP(module, compute_dtype=compute_dtype)
 
 
 def fsdp_on_after_backward(fsdp_model: torch.nn.Module, optimizer: torch.optim.Optimizer):
@@ -100,7 +102,7 @@ def fsdp_on_after_backward(fsdp_model: torch.nn.Module, optimizer: torch.optim.O
             Optimizer being used with the FSDP-wrapped model.
     """
     # For example: fsdp_model.finish_gradient_synchronization()
-    raise NotImplementedError
+    _fsdp_on_after_backward_impl(fsdp_model, optimizer)
 
 
 def fsdp_gather_full_params(fsdp_model: torch.nn.Module) -> dict[str, torch.Tensor]:
@@ -114,7 +116,9 @@ def fsdp_gather_full_params(fsdp_model: torch.nn.Module) -> dict[str, torch.Tens
     Returns:
         State dictionary mapping parameter names to full (unsharded) tensors.
     """
-    raise NotImplementedError
+    from cs336_systems import fsdp as fsdp_module
+
+    return fsdp_module.fsdp_gather_full_params(fsdp_model)
 
 
 def get_sharded_optimizer(params, optimizer_cls: type[torch.optim.Optimizer], **kwargs) -> torch.optim.Optimizer:

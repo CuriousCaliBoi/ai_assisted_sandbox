@@ -1,0 +1,78 @@
+task:
+  name: cs336-leaderboard
+  description: |
+    Optimize a full 8B training step for the CS336 Assignment 2 Systems leaderboard.
+
+    **Goal:** Minimize wall-clock time (milliseconds) for one complete training step:
+    forward pass + cross-entropy loss + backward + AdamW optimizer step.
+
+    **Official config** (do not change I/O semantics of the model):
+    - batch_size=2, ctx_len=32768, bf16, causal attention
+    - 34 layers, d_model=4096, d_ff=11008, 32 heads, vocab=151936
+    - Timing: `triton.testing.do_bench(train_step, warmup=10000, rep=30000)` (ms)
+
+    **Hardware target:** 2× NVIDIA B200 GPUs (leaderboard spec). This machine has 2× B300.
+
+    **Reference times** (Spring 2026, 2× B200):
+    - Top entries: ~3,800 ms
+    - Verified naive baseline: 10,000 ms
+    - Your starting point (CuTe FA4 + per-layer checkpoint): ~6,000 ms on 1× B300 (quick bench)
+
+    **What you may edit:** `cs336_systems/` (flash attention, model wiring, DDP/FSDP, fused kernels),
+    `tests/adapters.py` (return your implementations), and related scripts you add under the repo.
+
+    **Constraints:**
+    - Outputs must match `cs336_basics` reference behavior (BF16, causal masking).
+    - No copying external pre-built implementations; write your own.
+    - Full benchmark must finish within ~10 minutes from a cold cache (watch compile/autotune cost).
+
+    **How to eval:** Run `coral eval -m "description"` after changes. The grader runs flash-attention
+    correctness tests, then times `scripts/naive_leaderboard_benchmark.py`.
+
+  tips: |
+    - Read `docs/leaderboard_progress.md` for experiments already run on this machine.
+    - Big wins: flash attention, fused LM-head + CE (avoid materializing full logits), 2-GPU sharding,
+      fused AdamW, then `torch.compile` / Triton tuning.
+    - Use `--quick` locally while iterating; official eval uses full warmup/rep.
+    - Peak memory matters at ctx=32768 — naive attention OOMs; CuTe FA4 path is in `cs336_systems/`.
+
+grader:
+  timeout: 900
+  direction: minimize
+  args:
+    benchmark_script: scripts/naive_leaderboard_benchmark.py
+    quick: false
+    warmup_ms: 10000
+    rep_ms: 30000
+    attention: cute
+    checkpoint_every: 1
+    run_correctness: true
+    # Forward + non-causal backward pass today; causal backward is a known gap in the
+    # FA4 CuTe baseline (see test_flash_backward_triton[True]). Enable strict mode when fixed.
+    correctness_strict: false
+    correctness_pytest_args:
+      - tests/test_attention.py
+      - -k
+      - "triton and (forward or (backward and not True))"
+      - -q
+      - --tb=short
+
+agents:
+  count: 2
+  runtime: claude_code
+  model: claude-sonnet-4-6
+  research: true
+
+workspace:
+  results_dir: ./results
+  repo_path: ..
+  setup:
+    - uv sync
+
+sharing:
+  attempts: true
+  notes: true
+  skills: true
+
+run:
+  session: local
